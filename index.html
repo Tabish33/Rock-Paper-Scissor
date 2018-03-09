@@ -19,22 +19,59 @@
       let c = computer_selection.toUpperCase();
 
       if (p == c){
-         return 'Draw';
+         alert ('Draw');
+         return 'draw';
        }
       else if (p == 'ROCK' && c == 'SCISSORS'){
-        return 'You Win! Rock beats Scissors!';
+        alert( 'You Win this round! Rock beats Scissors!');
+        return true;
       }
       else if (p == 'SCISSORS' && c == 'PAPER'){
-        return 'You Win! Scissors beats Paper!';
+        alert ('You Win this round! Scissors beats Paper!');
+        return true;
       }
       else if (p == 'PAPER' && c == 'ROCK'){
-        return 'You Win! Paper beats Rock!';
+        alert ('You Win this round! Paper beats Rock!');
+        return true;
       }
       else{
-        return 'You Loose! '+ computer_selection +' beats '+ player_selection;
+        alert('You Loose this round! '+ computer_selection +' beats '+ player_selection);
+        return false;
       }
 
     }
+
+    function game(){
+      let player_wins = 0;
+      let computer_wins = 0;
+      let user_choice;
+      let result;
+
+      for (let i=0 ; i<5 ; i++){
+         user_choice = prompt('What\'s your move?');
+         computer_choice = computerPlay();
+
+         result = round(user_choice,computer_choice);
+
+         if (result == true) player_wins+=1;
+         else{
+           computer_wins+=1;
+         }
+
+      }
+
+      if ( player_wins > computer_wins){
+        alert('You Win!');
+      }
+      else if (player_wins < computer_wins){
+        alert('You Loose!');
+      }
+      else{
+        alert('It\'s a draw!');
+      }
+    }
+
+    game();
 
   </script>
 </body>
