@@ -14,7 +14,28 @@
       return choice;
     }
 
-    alert(computerPlay());
+    function round(player_selection, computer_selection){
+      let p = player_selection.toUpperCase();
+      let c = computer_selection.toUpperCase();
+
+      if (p == c){
+         return 'Draw';
+       }
+      else if (p == 'ROCK' && c == 'SCISSORS'){
+        return 'You Win! Rock beats Scissors!';
+      }
+      else if (p == 'SCISSORS' && c == 'PAPER'){
+        return 'You Win! Scissors beats Paper!';
+      }
+      else if (p == 'PAPER' && c == 'ROCK'){
+        return 'You Win! Paper beats Rock!';
+      }
+      else{
+        return 'You Loose! '+ computer_selection +' beats '+ player_selection;
+      }
+
+    }
+
   </script>
 </body>
 </html>
