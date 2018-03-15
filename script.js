@@ -92,9 +92,13 @@ function end(){
 
     if( player_wins > computer_wins){
       score.innerHTML = 'You Win!';
+      var win_audio =  document.querySelector('.win');
+      win_audio.play();
     }
     else if( player_wins < computer_wins){
       score.innerHTML= 'You Loose!';
+      var win_audio =  document.querySelector('.loose');
+      win_audio.play();
     }
     else{
       score.innerHTML = 'It\'s a Draw!';
@@ -103,4 +107,14 @@ function end(){
     computer_wins =0 ;
     no_of_games= 0;
   }
+}
+
+var reset = document.querySelector('.reset');
+reset.onclick = function(){
+  var audio = document.querySelector('.pop');
+  audio.play();
+  player_wins = 0;
+  computer_wins =0 ;
+  no_of_games= 0;
+  score.innerHTML = '0 : 0';
 }

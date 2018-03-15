@@ -37,6 +37,15 @@ html{
   border: 3px solid green;
 }
 
+.reset{
+  background-image: url('restart.jpg');
+  border: 3px solid yellow;
+  margin-left: 40px;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+}
+
 .rock:hover{
   transform: scale(1.2);
   box-shadow: 5px 5px 50px red;
@@ -50,6 +59,11 @@ html{
 .scissor:hover{
   transform: scale(1.2);
   box-shadow: 5px 5px 50px green;
+}
+
+.reset:hover{
+  transform: scale(1.2);
+  box-shadow: 5px 5px 50px yellow;
 }
 
 .players{
@@ -110,9 +124,10 @@ hr{
   position: relative;
   height: 200px;
   width: 400px;
-  font-size: 100px;
+  font-size: 75px;
   color: white;
   bottom: 50px;
+  font-family: 'Pacifico', cursive;
 }
 
 .name{
