@@ -89,7 +89,7 @@ function end_game(){
       html_color.setAttribute('style','background: linear-gradient(#004d1a,#33ff77);');
     }
     else if( player_wins < computer_wins){
-      score.innerHTML= 'You Loose!';
+      score.innerHTML= 'You Lose!';
       var win_audio =  document.querySelector('.loose');
       win_audio.play();
       html_color.setAttribute('style','background: linear-gradient(#661400,#ff704d);');
