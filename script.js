@@ -15,49 +15,37 @@ function round(player_selection, computer_selection){
   let c = computer_selection.toUpperCase();
 
   if (p == c){
-     alert ('Draw');
      return 'draw';
    }
   else if (p == 'ROCK' && c == 'SCISSORS'){
-    alert( 'You Win this round! Rock beats Scissors!');
     return true;
   }
   else if (p == 'SCISSORS' && c == 'PAPER'){
-    alert ('You Win this round! Scissors beats Paper!');
     return true;
   }
   else if (p == 'PAPER' && c == 'ROCK'){
-    alert ('You Win this round! Paper beats Rock!');
     return true;
   }
   else{
-    alert('You Loose this round! '+ computer_selection +' beats '+ player_selection);
     return false;
   }
 
 }
 
-function game(){
-  let player_wins = 0;
-  let computer_wins = 0;
-  let turns =0 ;
-  let user_choice;
+function game(user_choice){
+
   let result;
 
-  while (turns!=5){
+  computer_choice = computerPlay();
 
-     computer_choice = computerPlay();
+  result = round(user_choice,computer_choice);
 
-     result = round(user_choice,computer_choice);
-
-     if (result == true) player_wins+=1;
-     else{
+  if (result == true) player_wins+=1;
+  else{
        computer_wins+=1;
-     }
-
   }
 
-  if ( player_wins > computer_wins){
+/*  if ( player_wins > computer_wins){
     alert('You Win!');
   }
   else if (player_wins < computer_wins){
@@ -65,17 +53,8 @@ function game(){
   }
   else{
     alert('It\'s a draw!');
-  }
+  }*/
 }
-
-var choice = document.querySelectorAll(".option" );
-
-choice.forEach(function(c){
-  c.onclick = function(){
-    
-  };
-
-});
 
 var user_image = document.querySelector('.user');
 var pic = 'boy'
@@ -87,5 +66,41 @@ user_image.onclick  = function(){
   else{
     user_image.setAttribute('style','background-image:url("boy.jpg") ')
     pic = 'boy';
+  }
+}
+
+var choice = document.querySelectorAll(".option" );
+var score = document.querySelector(".score" );
+let player_wins = 0;
+let computer_wins =0 ;
+var no_of_games= 0;
+
+choice.forEach(function(c){
+
+  c.onclick = function(e){
+    var audio = document.querySelector('.pop');
+    audio.play();
+    var user_choice=  e.target.firstChild.innerHTML;
+    game(user_choice);
+    score.innerHTML = player_wins + " : " + computer_wins;
+    no_of_games +=1;
+    end();
+  }});
+
+function end(){
+  if(no_of_games == 5){
+
+    if( player_wins > computer_wins){
+      score.innerHTML = 'You Win!';
+    }
+    else if( player_wins < computer_wins){
+      score.innerHTML= 'You Loose!';
+    }
+    else{
+      score.innerHTML = 'It\'s a Draw!';
+    }
+    player_wins = 0;
+    computer_wins =0 ;
+    no_of_games= 0;
   }
 }

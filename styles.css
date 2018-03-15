@@ -20,34 +20,35 @@ html{
   background-size: cover;
   position: relative;
   border-radius: 75px;
-  border: 3px solid yellow;
   transition: 0.3s;
 }
 
 .rock{
   background-image: url('rock.jpg');
-
+  border: 3px solid red;
 }
 
 .paper{
   background-image: url('paper.jpg');
+  border: 3px solid orange;
 }
 .scissor{
   background-image: url('scissor.jpg');
+  border: 3px solid green;
 }
 
 .rock:hover{
-  transform: scale(1.3);
+  transform: scale(1.2);
   box-shadow: 5px 5px 50px red;
 }
 
 .paper:hover{
-  transform: scale(1.3);
+  transform: scale(1.2);
   box-shadow: 5px 5px 50px orange;
 }
 
 .scissor:hover{
-  transform: scale(1.3);
+  transform: scale(1.2);
   box-shadow: 5px 5px 50px green;
 }
 
@@ -71,11 +72,12 @@ html{
   border-radius: 100px;
   position: relative;
   top: 50px;
+  border: 3px solid #663300;
 }
 
 .user:hover{
-  transform: scale(1.3);
-  box-shadow: 5px 5px 50px green;
+  transform: scale(1.2);
+  box-shadow: 5px 5px 50px brown;
 }
 
 .computer{
@@ -85,6 +87,7 @@ html{
   border-radius: 100px;
   position: relative;
   top: 50px;
+  border: 3px solid #66b3ff;
 }
 
 .scorecard{
