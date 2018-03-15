@@ -1,5 +1,6 @@
 html{
- background-color: #19334d;
+/* background: linear-gradient(#19334d,#6699ff);*/
+  background: linear-gradient(#001f4d,#4d94ff);
 }
 
 .options{
@@ -113,8 +114,9 @@ html{
 }
 
 hr{
-  color: yellow;
+  background-color: white ;
   width: 750px;
+  height: 2px;
   position: relative;
   top: 75px;
 

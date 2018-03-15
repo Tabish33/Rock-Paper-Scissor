@@ -1,4 +1,4 @@
-let moves = ['Rock','Paper','Scissors'];
+let moves = ['rock','paper','scissor'];
 
 function getRandomInt(max){
   return Math.floor(Math.random() * max);
@@ -17,10 +17,10 @@ function round(player_selection, computer_selection){
   if (p == c){
      return 'draw';
    }
-  else if (p == 'ROCK' && c == 'SCISSORS'){
+  else if (p == 'ROCK' && c == 'SCISSOR'){
     return true;
   }
-  else if (p == 'SCISSORS' && c == 'PAPER'){
+  else if (p == 'SCISSOR' && c == 'PAPER'){
     return true;
   }
   else if (p == 'PAPER' && c == 'ROCK'){
@@ -35,7 +35,6 @@ function round(player_selection, computer_selection){
 function game(user_choice){
 
   let result;
-
   computer_choice = computerPlay();
 
   result = round(user_choice,computer_choice);
@@ -44,16 +43,6 @@ function game(user_choice){
   else{
        computer_wins+=1;
   }
-
-/*  if ( player_wins > computer_wins){
-    alert('You Win!');
-  }
-  else if (player_wins < computer_wins){
-    alert('You Loose!');
-  }
-  else{
-    alert('It\'s a draw!');
-  }*/
 }
 
 var user_image = document.querySelector('.user');
@@ -74,31 +63,36 @@ var score = document.querySelector(".score" );
 let player_wins = 0;
 let computer_wins =0 ;
 var no_of_games= 0;
+var html_color = document.querySelector('html');
 
 choice.forEach(function(c){
 
   c.onclick = function(e){
+    html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
     var audio = document.querySelector('.pop');
     audio.play();
     var user_choice=  e.target.firstChild.innerHTML;
     game(user_choice);
     score.innerHTML = player_wins + " : " + computer_wins;
     no_of_games +=1;
-    end();
+    end_game();
   }});
 
-function end(){
+
+function end_game(){
   if(no_of_games == 5){
 
     if( player_wins > computer_wins){
       score.innerHTML = 'You Win!';
       var win_audio =  document.querySelector('.win');
       win_audio.play();
+      html_color.setAttribute('style','background: linear-gradient(#004d1a,#33ff77);');
     }
     else if( player_wins < computer_wins){
       score.innerHTML= 'You Loose!';
       var win_audio =  document.querySelector('.loose');
       win_audio.play();
+      html_color.setAttribute('style','background: linear-gradient(#661400,#ff704d);');
     }
     else{
       score.innerHTML = 'It\'s a Draw!';
@@ -117,4 +111,6 @@ reset.onclick = function(){
   computer_wins =0 ;
   no_of_games= 0;
   score.innerHTML = '0 : 0';
+  html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
+
 }
