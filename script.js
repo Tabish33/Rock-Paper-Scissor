@@ -40,23 +40,36 @@ function game(user_choice){
   result = round(user_choice,computer_choice);
 
   if (result == true) player_wins+=1;
-  else{
+  else if (result == false){
        computer_wins+=1;
+  }
+  else{
+    player_wins+=1;
+    computer_wins+=1;
+  }
+
+  return computer_choice;
+}
+
+function userPic(){
+
+  var user_image = document.querySelector('.user');
+  var pic = 'boy'
+  user_image.onclick  = function(){
+    if(pic == 'boy'){
+      user_image.setAttribute('style','background-image:url("girl.jpg") ')
+      pic = 'girl';
+      return;
+    }
+    else if (pic == 'girl') {
+      user_image.setAttribute('style','background-image:url("boy.jpg") ')
+      pic = 'boy';
+      return;
+    }
   }
 }
 
-var user_image = document.querySelector('.user');
-var pic = 'boy'
-user_image.onclick  = function(){
-  if(pic == 'boy'){
-    user_image.setAttribute('style','background-image:url("girl.jpg") ')
-    pic = 'girl';
-  }
-  else{
-    user_image.setAttribute('style','background-image:url("boy.jpg") ')
-    pic = 'boy';
-  }
-}
+userPic();
 
 var choice = document.querySelectorAll(".option" );
 var score = document.querySelector(".score" );
@@ -65,17 +78,36 @@ let computer_wins =0 ;
 var no_of_games= 0;
 var html_color = document.querySelector('html');
 
+function show_moves(usr_move, pc_move){
+  usr_move+='.jpg';
+  pc_move+='.jpg';
+
+  var usr_pic = document.querySelector('.user');
+  usr_pic.setAttribute('style',`background-image: url("${usr_move}")`);
+
+  var pc_pic = document.querySelector('.computer');
+  pc_pic.setAttribute('style',`background-image: url("${pc_move}")`);
+
+}
+
 choice.forEach(function(c){
 
   c.onclick = function(e){
     html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
+
     var audio = document.querySelector('.pop');
     audio.play();
+
+
+
     var user_choice=  e.target.firstChild.innerHTML;
-    game(user_choice);
+    var comp_choice = game(user_choice);
     score.innerHTML = player_wins + " : " + computer_wins;
     no_of_games +=1;
+    show_moves(user_choice,comp_choice);
     end_game();
+
+
   }});
 
 
@@ -95,11 +127,12 @@ function end_game(){
       html_color.setAttribute('style','background: linear-gradient(#661400,#ff704d);');
     }
     else{
-      score.innerHTML = 'It\'s a Draw!';
+      score.innerHTML = 'Draw!';
     }
     player_wins = 0;
     computer_wins =0 ;
     no_of_games= 0;
+
   }
 }
 
@@ -113,4 +146,9 @@ reset.onclick = function(){
   score.innerHTML = '0 : 0';
   html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
 
+  var user_image = document.querySelector('.user');
+  var pc_image = document.querySelector('.computer');
+
+  user_image.setAttribute('style','background-image:url("boy.jpg") ')
+  pc_image.setAttribute('style','background-image:url("pc.png") ')
 }
