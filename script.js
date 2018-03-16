@@ -1,5 +1,12 @@
 let moves = ['rock','paper','scissor'];
 
+var choice = document.querySelectorAll(".option" );
+var score = document.querySelector(".score" );
+let player_wins = 0;
+let computer_wins =0 ;
+var no_of_games= 0;
+var html_color = document.querySelector('html');
+
 function getRandomInt(max){
   return Math.floor(Math.random() * max);
 }
@@ -71,13 +78,6 @@ function userPic(){
 
 userPic();
 
-var choice = document.querySelectorAll(".option" );
-var score = document.querySelector(".score" );
-let player_wins = 0;
-let computer_wins =0 ;
-var no_of_games= 0;
-var html_color = document.querySelector('html');
-
 function show_moves(usr_move, pc_move){
   usr_move+='.jpg';
   pc_move+='.jpg';
@@ -90,26 +90,34 @@ function show_moves(usr_move, pc_move){
 
 }
 
-choice.forEach(function(c){
+function move(){
 
-  c.onclick = function(e){
-    html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
+  choice.forEach(function(c){
 
-    var audio = document.querySelector('.pop');
-    audio.play();
+    c.onclick = function(e){
+      html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
 
+      var audio = document.querySelector('.pop');
+      audio.play();
 
-
-    var user_choice=  e.target.firstChild.innerHTML;
-    var comp_choice = game(user_choice);
-    score.innerHTML = player_wins + " : " + computer_wins;
-    no_of_games +=1;
-    show_moves(user_choice,comp_choice);
-    end_game();
-
-
+      var user_choice=  e.target.firstChild.innerHTML;
+      var comp_choice = game(user_choice);
+      score.innerHTML = player_wins + " : " + computer_wins;
+      no_of_games +=1;
+      show_moves(user_choice,comp_choice);
+      end_game();
   }});
+}
 
+move();
+
+function resetImage(){
+  var user_image = document.querySelector('.user');
+  var pc_image = document.querySelector('.computer');
+
+  user_image.setAttribute('style','background-image:url("boy.jpg") ')
+  pc_image.setAttribute('style','background-image:url("pc.png") ')
+}
 
 function end_game(){
   if(no_of_games == 5){
@@ -132,23 +140,42 @@ function end_game(){
     player_wins = 0;
     computer_wins =0 ;
     no_of_games= 0;
+    resetImage();
 
   }
 }
 
-var reset = document.querySelector('.reset');
-reset.onclick = function(){
-  var audio = document.querySelector('.pop');
-  audio.play();
-  player_wins = 0;
-  computer_wins =0 ;
-  no_of_games= 0;
-  score.innerHTML = '0 : 0';
-  html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
+function resetBoard(){
 
-  var user_image = document.querySelector('.user');
-  var pc_image = document.querySelector('.computer');
-
-  user_image.setAttribute('style','background-image:url("boy.jpg") ')
-  pc_image.setAttribute('style','background-image:url("pc.png") ')
+  var reset = document.querySelector('.reset');
+  reset.onclick = function(){
+    var audio = document.querySelector('.pop');
+    audio.play();
+    player_wins = 0;
+    computer_wins =0 ;
+    no_of_games= 0;
+    score.innerHTML = '0 : 0';
+    html_color.setAttribute('style','background: linear-gradient(#001f4d,#4d94ff);')
+    resetImage();
+  }
 }
+
+resetBoard();
+
+function start(){
+
+  var start_button = document.querySelector('.start');
+
+  start_button.onclick = function(){
+    var options =  document.querySelectorAll('.option');
+    start_button.setAttribute('style','display:none;');
+    var audio = document.querySelector('.pop');
+    audio.play();
+
+    options.forEach(function(option){
+      option.setAttribute('style','display:inline-block;');
+    })
+  }
+}
+
+  start()

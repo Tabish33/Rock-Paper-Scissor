@@ -15,7 +15,7 @@ html{
   margin: 0 20px;
   width: 150px;
   height: 150px;
-  display: inline-block;
+  display: none;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -43,7 +43,7 @@ html{
   margin-left: 40px;
   width: 150px;
   height: 150px;
-  display: inline-block;
+/*  display: inline-block;*/
 }
 
 .rock:hover{
@@ -133,4 +133,21 @@ hr{
 
 .name{
   display: none;
+}
+
+.start{
+  background-image: url('start.png');
+  width: 160px;
+  height: 160px;
+  display: inline-block;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  border-radius: 80px;
+  transition: 0.3s;
+}
+
+.start:hover{
+  transform: scale(1.2);
+  box-shadow: 5px 5px 50px red;
 }
